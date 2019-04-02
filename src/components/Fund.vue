@@ -1,13 +1,14 @@
 <template>
   <ul class="list-wrap">
     <li class="list">
-      <div class="card" v-for="(fund, index) in funds" :key="index">
+      <div class="card">
         <h1>{{fund.title}}</h1>
         <p>{{fund.desc}}</p>
         <p>시작일 : {{fund.startDate}}</p>
         <p>종료일 : {{fund.endDate}}</p>
         <p>목표금액 : {{fund.fundGoal}}</p>
         <p>현재금액 : {{fund.fundCurrent}}</p>
+        <p>{{percentage}}% 모금됨</p>
       </div>
     </li>
   </ul>
@@ -16,20 +17,18 @@
 <script lang="ts">
 export default {
   name: 'Fund',
-  data () {
-    return {
-      funds: [
-        {
-          title: 'Fund1',
-          desc: 'Its a description of fund 1',
-          startDate: 20190402,
-          endDate: 20190430,
-          fundGoal: 10000000,
-          fundCurrent: 0
-        }
-      ]
+  props: {
+    fund: {
+      type: Object,
+      required: true
+    }
+  },
+  computed: {
+    percentage: function(){
+      return (Math.floor(this.fund.fundCurrent/this.fund.fundGoal*100))
     }
   }
+
 }
 </script>
 

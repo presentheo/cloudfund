@@ -1,19 +1,16 @@
 <template>
   <div id="app">
-    <Fund></Fund>
-    <Order></Order>
+    <FundContainer></FundContainer>
   </div>
 </template>
 
 <script>
-import Fund from './components/Fund.vue'
-import Order from './components/Order.vue'
+import FundContainer from './containers/FundContainer'
 
 export default {
   name: 'app',
   components: {
-    Fund,
-    Order
+    FundContainer
   }
 }
 </script>

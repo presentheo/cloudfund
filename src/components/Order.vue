@@ -2,24 +2,23 @@
   <div>
     <input
       type="number"
+      v-model="id">
+    <input
+      type="number"
       v-model="money">
     <button
-      @click="makeOrder"
+      @click="$emit('make', money, id)"
     >투자하자</button>
   </div>
   
 </template>
 
-<script>
+<script lang="ts">
 export default {
   data(){
     return {
-      money: Number
-    }
-  },
-  methods: {
-    makeOrder() {
-      alert(this.money);
+      money: 0,
+      id: 0
     }
   }
 }
