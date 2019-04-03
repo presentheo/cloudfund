@@ -25,17 +25,19 @@ export default {
     return {
       funds: [
         {
-          id: 1,
+          FUND_ID: 1,
           title: 'Fund1',
           desc: 'Its a description of fund 1',
           startDate: 20190402,
           endDate: 20190430,
           fundGoal: 10000000,
           fundCurrent: 0,
-          rewards: [
+          donations: [
             {
+              DONATION_ID: 1,
               price: 50000,
-              quantity: 500
+              quantity: 500,
+
             }
           ]
         }
@@ -49,7 +51,7 @@ export default {
     makeOrder(money, id) {
 
       this.funds.map((e) => {
-        if (e.id == id){
+        if (e.FUND_ID == id){
 
           // 펀딩 성공
           if (money <= (e.fundGoal - e.fundCurrent) && this.getNow() >= e.startDate && this.getNow() <= e.endDate){
