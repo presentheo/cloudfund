@@ -23,21 +23,21 @@ export default {
   },
   data() {
     return {
+      minInvestment: 1000,
       funds: [
         {
           FUND_ID: 1,
           title: 'Fund1',
           desc: 'Its a description of fund 1',
           startDate: 20190402,
-          endDate: 20190430,
+          endDate: 20190515,
           fundGoal: 10000000,
           fundCurrent: 0,
           donations: [
             {
               DONATION_ID: 1,
               price: 50000,
-              quantity: 500,
-
+              quantity: 500
             }
           ]
         }
@@ -54,11 +54,15 @@ export default {
         if (e.FUND_ID == id){
 
           // 펀딩 성공
-          if (money <= (e.fundGoal - e.fundCurrent) && this.getNow() >= e.startDate && this.getNow() <= e.endDate){
+          if (money >= this.minInvestment && money <= (e.fundGoal - e.fundCurrent) && this.getNow() >= e.startDate && this.getNow() <= e.endDate){
             e.fundCurrent += parseInt(money);
             alert(`${e.title} 상품에 ${money}원을 투자하셨습니다!`)
           }
 
+          // 실패 - 최소금액 미만시
+          if (money < this.minInvestment) {
+            alert(`최소 ${this.minInvestment}원 이상 투자 가능합니다.`)
+          }
           // 실패 - 최대금액 초과시
           if (money > (e.fundGoal - e.fundCurrent)){
             alert('최대 투자액을 초과했습니다!')
